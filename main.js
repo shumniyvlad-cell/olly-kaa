@@ -74,7 +74,7 @@
   function frostSize() {
     const r = cv.getBoundingClientRect(); FW = Math.round(r.width); FH = Math.round(r.height);
     if (!FW || !FH) return; cv.width = FW; cv.height = FH; tex = makeFrost(FW, FH); fx.drawImage(tex, 0, 0);
-    if (!motion) { melt(FW * .5, FH * .3, FW * .5); melt(FW * .5, FH * .55, FW * .35); }
+    if (!motion) { melt(FW * .5, FH * .38, FW * .5); melt(FW * .5, FH * .6, FW * .35); }
   }
   function trail(x, y) {
     const r = Math.max(36, FW * .13);
@@ -87,13 +87,13 @@
   frostSize(); let rs; addEventListener('resize', () => { clearTimeout(rs); rs = setTimeout(frostSize, 200); });
   if (motion) {
     const t0 = performance.now();
-    (function intro(t) { const p = (t - t0) / 2400; if (p < 1 && !touched) { melt(FW * (.22 + .56 * p), FH * (.28 + .1 * Math.sin(p * 6)), FW * .17); requestAnimationFrame(intro); } })(t0);
+    (function intro(t) { const p = (t - t0) / 2400; if (p < 1 && !touched) { melt(FW * (.22 + .56 * p), FH * (.38 + .08 * Math.sin(p * 6)), FW * .17); requestAnimationFrame(intro); } })(t0);
     let vis = true; new IntersectionObserver(e => vis = e[0].isIntersecting).observe(cv);
     setInterval(() => { if (!vis) return; fx.globalAlpha = .03; fx.drawImage(tex, 0, 0); fx.globalAlpha = 1; }, 110);
     setInterval(() => {
       if (!vis || performance.now() - lastMove < 3000) return;
       const s = performance.now(), dir = Math.random() < .5;
-      (function breath(t) { const p = (t - s) / 1800; if (p >= 1) return; melt(FW * (dir ? .26 + .48 * p : .74 - .48 * p), FH * (.27 + .1 * Math.sin(p * Math.PI)), FW * .16); requestAnimationFrame(breath); })(s);
+      (function breath(t) { const p = (t - s) / 1800; if (p >= 1) return; melt(FW * (dir ? .26 + .48 * p : .74 - .48 * p), FH * (.38 + .08 * Math.sin(p * Math.PI)), FW * .16); requestAnimationFrame(breath); })(s);
     }, 4200);
   }
 

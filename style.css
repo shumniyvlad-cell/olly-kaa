@@ -55,10 +55,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero-in{position:relative}
 .word{font-weight:800;font-size:clamp(60px,15.8vw,236px);line-height:.84;letter-spacing:.012em;white-space:nowrap;margin-left:-.04em}
 .word .ch{display:inline-block;transform-origin:50% 100%;will-change:transform,filter}
-.hero-row{display:grid;grid-template-columns:1fr minmax(260px,400px);gap:48px;align-items:end;margin-top:34px}
+.hero-row{display:grid;grid-template-columns:1fr minmax(240px,350px);gap:48px;align-items:start;margin-top:28px}
 .hero-lead{font-size:clamp(21px,2.2vw,28px);line-height:1.38;max-width:30ch;margin-bottom:30px;font-weight:500}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
-.portrait{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:9/10.5;margin-top:0;box-shadow:0 50px 90px -40px rgba(40,60,70,.55)}
+.portrait{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:9/10;margin-top:-60px;box-shadow:0 50px 90px -40px rgba(40,60,70,.55)}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 #frost{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:crosshair}
 .frost-hint{position:absolute;left:14px;bottom:14px;font-size:15px;font-weight:500;background:rgba(255,255,255,.88);color:var(--ink);padding:8px 13px;border-radius:12px;transition:opacity .6s;pointer-events:none}
