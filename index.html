@@ -608,7 +608,11 @@ if(motion){
   let t0=performance.now();
   (function intro(t){const p=(t-t0)/2200;if(p<1&&!touched){const x=W*(.25+.5*p),y=H*(.3+.12*Math.sin(p*6));melt(x,y,W*.16);requestAnimationFrame(intro)}})(t0);
   let visible=true;new IntersectionObserver(e=>visible=e[0].isIntersecting).observe(cv);
-  setInterval(()=>{if(!visible)return;ctx.globalAlpha=.035;ctx.drawImage(frostTex,0,0);ctx.globalAlpha=1},80);
+  let lastMove=0;cv.addEventListener('pointermove',()=>lastMove=performance.now());
+  setInterval(()=>{if(!visible)return;ctx.globalAlpha=.03;ctx.drawImage(frostTex,0,0);ctx.globalAlpha=1},110);
+  // если никто не трогает, тёплое дыхание само проходит по лицу, чтобы портрет не замерзал целиком
+  setInterval(()=>{if(!visible||performance.now()-lastMove<3000)return;const s=performance.now(),dir=Math.random()<.5;
+    (function breath(t){const p=(t-s)/1800;if(p>=1)return;const x=W*(dir?.28+.44*p:.72-.44*p),y=H*(.26+.1*Math.sin(p*Math.PI));melt(x,y,W*.15);requestAnimationFrame(breath)})(s)},4200);
 }
 
 /* карта тела */
